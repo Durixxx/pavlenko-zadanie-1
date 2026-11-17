@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie – prihláška na kurz | WebLab</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="formular_zadanie.css">
+</head>
+<body>
+    <div id="topbar"></div>
+
+    <main class="container wide">
+        <h1>Prihláška na kurz</h1>
+        <p class="lead">Vyplň formulár. Náhľad vpravo sa aktualizuje počas písania.</p>
+
+        <div class="layout">
+            <form id="registrationForm" class="form-box" novalidate>
+                <div class="form-group">
+                    <label for="fullName">Meno a priezvisko</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Ján Novák" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="jan@priklad.sk" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefónne číslo</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+421 900 000 000">
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">Dátum narodenia</label>
+                    <input type="date" id="birthDate" name="birthDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="course">Kurz</label>
+                    <select id="course" name="course">
+                        <option value="HTML">HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="JavaScript">JavaScript</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <span class="group-label">Úroveň</span>
+                    <div class="radio-row">
+                        <label><input type="radio" name="level" id="levelBeginner" value="Beginner" checked> Beginner</label>
+                        <label><input type="radio" name="level" id="levelIntermediate" value="Intermediate"> Intermediate</label>
+                        <label><input type="radio" name="level" id="levelAdvanced" value="Advanced"> Advanced</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="note">Poznámka</label>
+                    <textarea id="note" name="note" placeholder="Niečo, čo by sme mali vedieť…"></textarea>
+                </div>
+
+                <div class="form-group check-row">
+                    <input type="checkbox" id="terms" name="terms">
+                    <label for="terms">Súhlasím s podmienkami</label>
+                </div>
+
+                <button type="submit" id="submitBtn">Odoslať formulár</button>
+                <p class="form-error" id="formError" hidden></p>
+            </form>
+
+            <aside class="preview" id="preview">
+                <h2>Živý náhľad</h2>
+                <dl>
+                    <dt>Meno a priezvisko</dt><dd id="pvName" class="empty">—</dd>
+                    <dt>E-mail</dt><dd id="pvEmail" class="empty">—</dd>
+                    <dt>Telefón</dt><dd id="pvPhone" class="empty">—</dd>
+                    <dt>Dátum narodenia</dt><dd id="pvBirth" class="empty">—</dd>
+                    <dt>Kurz</dt><dd id="pvCourse">HTML</dd>
+                    <dt>Úroveň</dt><dd id="pvLevel">Beginner</dd>
+                    <dt>Poznámka</dt><dd id="pvNote" class="empty">—</dd>
+                    <dt>Súhlas s podmienkami</dt><dd id="pvTerms" class="empty">Nie</dd>
+                </dl>
+            </aside>
+        </div>
+    </main>
+
+    <div class="footer">© 2026 WebLab · Databázy a internet</div>
+    <script src="app.js"></script>
+    <script src="formular_zadanie.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulár | WebLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="topbar"></div>
+
+    <main class="container">
+        <h1>Formulár</h1>
+        <p class="lead">Ukážka základných prvkov HTML formulára.</p>
+
+        <form class="form-box" action="#" method="get">
+            <div class="form-group">
+                <label for="login">Používateľské meno</label>
+                <input type="text" id="login" name="login" placeholder="napr. jozko123">
+            </div>
+            <div class="form-group">
+                <label for="pass">Heslo</label>
+                <input type="password" id="pass" name="pass">
+            </div>
+            <div class="form-group">
+                <label for="age">Vek</label>
+                <input type="number" id="age" name="age" min="0" max="120">
+            </div>
+            <div class="form-group">
+                <label for="country">Krajina</label>
+                <select id="country" name="country">
+                    <option>Slovensko</option>
+                    <option>Česko</option>
+                    <option>Maďarsko</option>
+                    <option>Poľsko</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="group-label">Pohlavie</span>
+                <div class="radio-row">
+                    <label><input type="radio" name="gender" value="m"> Muž</label>
+                    <label><input type="radio" name="gender" value="f"> Žena</label>
+                    <label><input type="radio" name="gender" value="o"> Iné</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="msg">Správa</label>
+                <textarea id="msg" name="msg"></textarea>
+            </div>
+            <button type="submit">Odoslať</button>
+        </form>
+    </main>
+
+    <div class="footer">© 2026 WebLab · Databázy a internet</div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+CREATE DATABASE IF NOT EXISTS kniznica_db
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_slovak_ci;
+
+USE kniznica_db;
+
+CREATE TABLE IF NOT EXISTS knihy (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nazov VARCHAR(120) NOT NULL,
+    autor VARCHAR(150) NOT NULL,
+    rok SMALLINT UNSIGNED NOT NULL,
+    cena DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (id)
+);

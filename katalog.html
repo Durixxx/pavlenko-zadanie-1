@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalóg kníh | WebLab</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <script src="catalog.js" defer></script>
+</head>
+<body>
+    <div id="topbar"></div>
+
+    <main class="container">
+        <header>
+            <h1>Katalóg kníh</h1>
+            <p class="lead">Zoznam kníh uložených v databáze knižnice.</p>
+        </header>
+
+        <section class="card table-wrap" aria-labelledby="books-title">
+            <h2 id="books-title">Zoznam kníh</h2>
+            <p id="list-message" class="form-error" role="alert" aria-live="polite"></p>
+            <table class="data">
+                <thead>
+                    <tr>
+                        <th scope="col">Názov</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Rok</th>
+                        <th scope="col">Cena (€)</th>
+                    </tr>
+                </thead>
+                <tbody id="books-list">
+                    <tr><td colspan="4">Načítavam knihy…</td></tr>
+                </tbody>
+            </table>
+            <p><a class="btn" href="knihy.html">Spravovať knihy</a></p>
+        </section>
+    </main>
+
+    <div class="footer">© 2026 WebLab · Databázy a internet</div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+/* ============================================================
+   style.css – globálny stylesheet
+   1) premenné  2) body  3) topbar  4) layout  5) podstránky
+   6) formulárové prvky (použité aj vo formular_zadanie.html)
+   ============================================================ */
+
+:root {
+    --bg: #faf6ef;
+    --surface: #ffffff;
+    --ink: #1f2340;
+    --muted: #6b6f8a;
+    --primary: #3b3fb5;
+    --primary-dark: #2a2d8a;
+    --accent: #ff6b57;
+    --line: #e4dfd3;
+    --radius: 14px;
+    --shadow: 0 10px 30px rgba(31, 35, 64, 0.08);
+}
+
+/* ---------- body (definované len raz pre všetky podstránky) ---------- */
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 90% -10%, rgba(255, 107, 87, 0.12), transparent 40%),
+        radial-gradient(circle at -10% 20%, rgba(59, 63, 181, 0.10), transparent 40%),
+        var(--bg);
+    min-height: 100vh;
+}
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 0.6em; }
+h1 { font-size: 2.2rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.4rem; }
+a { color: var(--primary); }
+
+/* ---------- topbar.html ---------- */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 32px;
+    background: var(--ink);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+.topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+.topbar-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.topbar-links a {
+    display: block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: #d8daf0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s, color 0.2s;
+}
+.topbar-links a:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+.topbar-links a.active { background: var(--accent); color: #fff; }
+
+/* ---------- spoločný layout ---------- */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+}
+.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    margin-bottom: 24px;
+}
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 640px; }
+
+/* ---------- index.html ---------- */
+.hero {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.hero img { width: 100%; max-width: 320px; justify-self: center; }
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+}
+.tile {
+    display: block;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--primary); }
+.tile h3 { color: var(--primary); margin-bottom: 6px; }
+.tile p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- table.html ---------- */
+.table-wrap { overflow-x: auto; }
+table.data {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+table.data caption { text-align: left; font-weight: 700; padding-bottom: 10px; }
+table.data th, table.data td { padding: 12px 16px; text-align: left; }
+table.data thead th { background: var(--primary); color: #fff; }
+table.data tbody tr:nth-child(even) { background: #f4f1ff; }
+table.data tbody tr:hover { background: #ffe9e5; }
+table.data tfoot td { font-weight: 700; border-top: 2px solid var(--primary); }
+
+/* ---------- list.html ---------- */
+.lists {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+.lists ul, .lists ol, .lists dl { margin: 0; padding-left: 22px; }
+.lists li { margin-bottom: 6px; }
+.lists li::marker { color: var(--accent); font-weight: 700; }
+.lists dt { font-weight: 700; color: var(--primary); margin-top: 8px; }
+.lists dd { margin: 0 0 6px 0; color: var(--muted); }
+.lists dl { padding-left: 0; }
+
+/* ---------- javascript.html ---------- */
+.js-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.js-output {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f4f1ff;
+    min-height: 24px;
+    font-weight: 600;
+}
+.js-error:not(:empty) { color: #b42318; background: #fff0ee; }
+.counter-value { font-size: 3rem; font-weight: 800; color: var(--primary); text-align: center; }
+.js-clock { font-size: 2rem; font-variant-numeric: tabular-nums; text-align: center; }
+.dark-demo { transition: background 0.3s, color 0.3s; }
+.dark-demo.is-dark { background: var(--ink); color: #fff; }
+
+/* ---------- formulárové prvky (globálne) ---------- */
+.form-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 6px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+}
+.form-group { margin-bottom: 18px; }
+.form-group > label,
+.form-group > .group-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 14px;
+    font: inherit;
+    color: var(--ink);
+    background: #fdfcfa;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+textarea { resize: vertical; min-height: 110px; }
+
+/* :focus pre input fieldy */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(59, 63, 181, 0.18);
+}
+
+button,
+.btn {
+    display: inline-block;
+    padding: 12px 26px;
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--primary);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+/* :hover pre tlačidlo */
+button:hover,
+.btn:hover {
+    background: var(--accent);
+    box-shadow: 0 6px 16px rgba(255, 107, 87, 0.4);
+}
+button:active { transform: translateY(1px); }
+
+.radio-row { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.radio-row label, .check-row label { font-weight: 400; cursor: pointer; }
+input[type="radio"], input[type="checkbox"] { accent-color: var(--primary); width: 1.05em; height: 1.05em; }
+.check-row { display: flex; align-items: flex-start; gap: 10px; }
+.book-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.book-actions button { padding: 8px 12px; font-size: 0.9rem; }
+table.data td input { min-width: 6em; padding: 6px 8px; }
+
+/* ---------- pätička ---------- */
+.footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 24px 0; }
+
+@media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; }
+    .topbar { padding: 10px 16px; }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Správa kníh | WebLab</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <script src="knihy.js" defer></script>
+</head>
+<body>
+    <div id="topbar"></div>
+
+    <main class="container">
+        <h1>Moja knižnica</h1>
+        <p class="lead">Pridajte knihu do databázy alebo upravte existujúci záznam.</p>
+
+        <form id="formular" class="form-box" novalidate>
+            <div class="form-group">
+                <label for="nazov">Názov knihy</label>
+                <input id="nazov" name="nazov" type="text" maxlength="120" required>
+            </div>
+            <div class="form-group">
+                <label for="autor">Autor</label>
+                <input id="autor" name="autor" type="text" maxlength="150" required>
+            </div>
+            <div class="form-group">
+                <label for="rok">Rok vydania</label>
+                <input id="rok" name="rok" type="number" step="1" min="0" max="65535" required>
+            </div>
+            <div class="form-group">
+                <label for="cena">Cena (€)</label>
+                <input id="cena" name="cena" type="number" step="0.01" min="0" required>
+            </div>
+            <button type="submit">Pridať knihu</button>
+        </form>
+
+        <p id="sprava" role="status" aria-live="polite"></p>
+        <p id="chyba" class="form-error" role="alert" aria-live="polite"></p>
+
+        <section class="card table-wrap" aria-labelledby="manage-books-title">
+            <h2 id="manage-books-title">Zoznam kníh</h2>
+            <table class="data">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Názov</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Rok</th>
+                        <th scope="col">Cena (€)</th>
+                        <th scope="col">Akcia</th>
+                    </tr>
+                </thead>
+                <tbody id="zoznam-knih">
+                    <tr><td colspan="6">Načítavam knihy…</td></tr>
+                </tbody>
+            </table>
+        </section>
+        <p><a href="katalog.html">Späť na katalóg</a></p>
+    </main>
+
+    <div class="footer">© 2026 WebLab · Databázy a internet</div>
+</body>
+</html>

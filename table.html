@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuľka | WebLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="topbar"></div>
+
+    <main class="container">
+        <h1>Tabuľka</h1>
+        <p class="lead">Ukážka HTML tabuľky s hlavičkou, telom a pätičkou.</p>
+
+        <div class="card table-wrap">
+            <table class="data">
+                <caption>Rozvrh predmetov</caption>
+                <thead>
+                    <tr><th>Deň</th><th>Predmet</th><th>Čas</th><th>Miestnosť</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Pondelok</td><td>Databázy a internet</td><td>8:00 – 9:40</td><td>A101</td></tr>
+                    <tr><td>Utorok</td><td>Programovanie</td><td>10:00 – 11:40</td><td>B203</td></tr>
+                    <tr><td>Streda</td><td>Matematika</td><td>12:00 – 13:40</td><td>C012</td></tr>
+                    <tr><td>Štvrtok</td><td>Anglický jazyk</td><td>14:00 – 15:40</td><td>A305</td></tr>
+                    <tr><td>Piatok</td><td>Počítačové siete</td><td>8:00 – 9:40</td><td>B110</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr><td colspan="4">Spolu: 5 predmetov</td></tr>
+                </tfoot>
+            </table>
+        </div>
+    </main>
+
+    <div class="footer">© 2026 WebLab · Databázy a internet</div>
+    <script src="app.js"></script>
+</body>
+</html>

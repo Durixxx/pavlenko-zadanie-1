@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript | WebLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="topbar"></div>
+
+    <main class="container">
+        <h1>JavaScript</h1>
+        <p class="lead">Interaktívne ukážky. Všetky skripty sú v súbore app.js.</p>
+
+        <div class="js-grid">
+            <section class="card">
+                <h2>Pozdrav</h2>
+                <input type="text" id="nameInput" placeholder="Tvoje meno">
+                <p><button id="btnGreet" type="button">Pozdraviť</button></p>
+                <div class="js-output" id="greetOutput"></div>
+            </section>
+
+            <section class="card">
+                <h2>Počítadlo</h2>
+                <div class="counter-value" id="counterValue">0</div>
+                <p style="text-align:center">
+                    <button id="btnMinus" type="button">−</button>
+                    <button id="btnReset" type="button">Reset</button>
+                    <button id="btnPlus" type="button">+</button>
+                </p>
+            </section>
+
+            <section class="card dark-demo" id="themeCard">
+                <h2>Tmavý režim</h2>
+                <p>Klikni na tlačidlo a karta zmení vzhľad.</p>
+                <button id="btnTheme" type="button">Prepnúť</button>
+            </section>
+
+            <section class="card">
+                <h2>Hodiny</h2>
+                <div class="js-clock" id="clock"></div>
+            </section>
+
+            <section class="card">
+                <h2>Kalkulačka</h2>
+                <div class="form-group"><input type="number" id="numA" placeholder="Prvé číslo"></div>
+                <div class="form-group">
+                    <select id="operation">
+                        <option value="+">+ sčítanie</option>
+                        <option value="-">− odčítanie</option>
+                        <option value="*">× násobenie</option>
+                        <option value="/">÷ delenie</option>
+                    </select>
+                </div>
+                <div class="form-group"><input type="number" id="numB" placeholder="Druhé číslo"></div>
+                <button id="btnCalc" type="button">Vypočítať</button>
+                <div class="js-output" id="calcOutput"></div>
+            </section>
+
+            <section class="card">
+                <h2>Ukážková chyba</h2>
+                <p>Stlač tlačidlo a zobrazí sa príklad chyby JavaScriptu.</p>
+                <button id="btnError" type="button">Zobraziť chybu</button>
+                <div class="js-output js-error" id="errorOutput" role="alert" aria-live="polite"></div>
+            </section>
+        </div>
+    </main>
+
+    <div class="footer">© 2026 WebLab · Databázy a internet</div>
+    <script src="app.js"></script>
+</body>
+</html>
