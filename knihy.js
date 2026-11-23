@@ -17,24 +17,39 @@ async function textChyby(odpoved) {
     return text || `Chyba servera (${odpoved.status})`;
 }
 
+// Pri rýchlom písaní do vyhľadávania beží naraz viac požiadaviek –
+// vykreslíme iba odpoveď na tú poslednú.
+let poslednaPoziadavka = 0;
+
 async function nacitajKnihy() {
+    const cisloPoziadavky = ++poslednaPoziadavka;
     chyba.textContent = "";
-    zoznamKnih.replaceChildren();
+
+    // Cvičenie 10: hľadaný text a zoradenie posielame serveru v URL (?hladat=&zoradit=&smer=)
+    const hladat = document.getElementById("hladatInput").value;
+    const zoradit = document.getElementById("zoraditSelect").value;
+    const smer = document.getElementById("smerSelect").value;
+    const params = new URLSearchParams({ hladat, zoradit, smer });
 
     try {
-        const odpoved = await fetch(`${API}/api/knihy`);
+        const odpoved = await fetch(`${API}/api/knihy?` + params.toString());
         if (!odpoved.ok) throw new Error(await textChyby(odpoved));
 
         const knihy = await odpoved.json();
+        if (cisloPoziadavky !== poslednaPoziadavka) return;
         if (!Array.isArray(knihy)) {
             throw new Error("Server vrátil neočakávaný formát údajov.");
         }
+
+        zoznamKnih.replaceChildren();
 
         if (knihy.length === 0) {
             const riadok = document.createElement("tr");
             const bunka = document.createElement("td");
             bunka.colSpan = 6;
-            bunka.textContent = "V databáze zatiaľ nie sú žiadne knihy.";
+            bunka.textContent = hladat.trim()
+                ? "Hľadanému výrazu nezodpovedá žiadna kniha."
+                : "V databáze zatiaľ nie sú žiadne knihy.";
             riadok.append(bunka);
             zoznamKnih.append(riadok);
             return;
@@ -71,7 +86,9 @@ async function nacitajKnihy() {
             zoznamKnih.append(riadok);
         }
     } catch (error) {
+        if (cisloPoziadavky !== poslednaPoziadavka) return;
         chyba.textContent = `Knihy sa nepodarilo načítať: ${error.message}`;
+        zoznamKnih.replaceChildren();
         const riadok = document.createElement("tr");
         const bunka = document.createElement("td");
         bunka.colSpan = 6;
@@ -234,4 +251,38 @@ formular.addEventListener("submit", async udalost => {
     }
 });
 
+// Cvičenie 10: reakcia na zmenu filtra alebo zoradenia
+document.getElementById("hladatInput").addEventListener("input", nacitajKnihy);
+document.getElementById("zoraditSelect").addEventListener("change", nacitajKnihy);
+document.getElementById("smerSelect").addEventListener("change", nacitajKnihy);
+
+document.getElementById("resetFilterBtn").addEventListener("click", () => {
+    document.getElementById("hladatInput").value = "";
+    document.getElementById("zoraditSelect").value = "id";
+    document.getElementById("smerSelect").value = "ASC";
+    nacitajKnihy();
+});
+
+// Bonusová úloha: meno prihláseného používateľa zo sessionStorage
+function zobrazPrihlaseneho() {
+    const info = document.getElementById("prihlasenyInfo");
+    let pouzivatel = null;
+    try {
+        pouzivatel = JSON.parse(sessionStorage.getItem("prihlasenyPouzivatel"));
+    } catch {
+        pouzivatel = null;
+    }
+
+    if (pouzivatel && pouzivatel.meno) {
+        info.textContent = `Prihlásený používateľ: ${pouzivatel.meno} (${pouzivatel.email})`;
+    } else {
+        info.textContent = "Nie ste prihlásený. ";
+        const odkaz = document.createElement("a");
+        odkaz.href = "prihlasenie.html";
+        odkaz.textContent = "Prihlásiť sa";
+        info.append(odkaz);
+    }
+}
+
+zobrazPrihlaseneho();
 nacitajKnihy();

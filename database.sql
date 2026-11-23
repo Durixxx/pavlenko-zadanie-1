@@ -12,3 +12,12 @@ CREATE TABLE IF NOT EXISTS knihy (
     cena DECIMAL(10, 2) NOT NULL,
     PRIMARY KEY (id)
 );
+
+-- Cvičenie 10: používatelia (heslá sa ukladajú iba ako bcrypt hash)
+CREATE TABLE IF NOT EXISTS pouzivatelia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    meno VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    heslo_hash VARCHAR(255) NOT NULL,
+    vytvoreny TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

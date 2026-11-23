@@ -54,6 +54,36 @@ INSERT INTO `knihy` VALUES
 (7,'Harry Potter a Kameň mudrcov','J. K. Rowlingová',1997,15.00);
 /*!40000 ALTER TABLE `knihy` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `pouzivatelia`
+--
+
+DROP TABLE IF EXISTS `pouzivatelia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pouzivatelia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `meno` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `heslo_hash` varchar(255) NOT NULL,
+  `vytvoreny` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_slovak_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pouzivatelia`
+--
+
+LOCK TABLES `pouzivatelia` WRITE;
+/*!40000 ALTER TABLE `pouzivatelia` DISABLE KEYS */;
+INSERT INTO `pouzivatelia` VALUES
+(2,'Ján Novák','jan.novak@example.com','$2b$10$yZxCVUkIMyFMWBaYPJ0QJOZyeXdKQgGkA0ayx1vPYFbn9p4NWubae','2026-11-23 09:22:39'),
+(3,'Eva Kováčová','eva.kovacova@example.com','$2b$10$HAF7SlTU3c9gKzQOO5B4HuDExcuLQZFIg8w4TLm0yL7kZRElF2HoW','2026-11-23 09:22:39');
+/*!40000 ALTER TABLE `pouzivatelia` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

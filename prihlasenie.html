@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prihlásenie | WebLab</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <script src="prihlasenie.js" defer></script>
+</head>
+<body>
+    <div id="topbar"></div>
+
+    <main class="container">
+        <h1>Prihlásenie používateľa</h1>
+        <p class="lead">Zadajte e-mail a heslo, s ktorými ste sa zaregistrovali na stránke <a href="pouzivatelia.html">Používatelia</a>.</p>
+
+        <form id="prihlasenieForm" class="form-box">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input id="email" type="email" placeholder="E-mail" autocomplete="username" required>
+            </div>
+            <div class="form-group">
+                <label for="heslo">Heslo</label>
+                <input id="heslo" type="password" placeholder="Heslo" autocomplete="current-password" required>
+            </div>
+            <button type="submit">Prihlásiť sa</button>
+        </form>
+
+        <div id="vysledok" role="status" aria-live="polite"></div>
+    </main>
+
+    <div class="footer">© 2026 WebLab · Databázy a internet</div>
+</body>
+</html>

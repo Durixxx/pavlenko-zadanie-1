@@ -18,6 +18,8 @@ const FALLBACK_TOPBAR = `
         <li><a href="list.html">Zoznamy</a></li>
         <li><a href="javasript.html">JavaScript</a></li>
         <li><a href="katalog.html">Knihy</a></li>
+        <li><a href="pouzivatelia.html">Používatelia</a></li>
+        <li><a href="prihlasenie.html">Prihlásenie</a></li>
     </ul>
 </nav>`;
 

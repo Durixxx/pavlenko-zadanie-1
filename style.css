@@ -249,6 +249,15 @@ input[type="radio"], input[type="checkbox"] { accent-color: var(--primary); widt
 .book-actions button { padding: 8px 12px; font-size: 0.9rem; }
 table.data td input { min-width: 6em; padding: 6px 8px; }
 
+/* ---------- Cvičenie 10: filter kníh, používatelia, prihlásenie ---------- */
+.filter-panel { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+.filter-panel input[type="text"] { flex: 1 1 220px; width: auto; }
+.filter-panel select { flex: 0 1 auto; width: auto; }
+.filter-panel button { padding: 10px 18px; }
+.login-info { text-align: right; color: var(--muted); margin: 0 0 8px; }
+.msg-ok { color: #1e7b34; }
+.msg-err { color: #c62828; }
+
 /* ---------- pätička ---------- */
 .footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 24px 0; }
 
