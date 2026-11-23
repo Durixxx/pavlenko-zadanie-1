@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrácia | WebLab</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <script src="registracia.js" defer></script>
+</head>
+<body>
+    <div id="topbar"></div>
+
+    <main class="container">
+        <h1>Registrácia</h1>
+        <p class="lead">Vytvorte si účet. Už máte účet? <a href="prihlasenie.html">Prihláste sa</a>.</p>
+
+        <form id="registracnyFormular" class="form-box" novalidate>
+            <div class="form-group">
+                <label for="meno">Meno a priezvisko</label>
+                <input id="meno" type="text" maxlength="100" placeholder="Meno a priezvisko" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input id="email" type="email" maxlength="150" placeholder="E-mail" autocomplete="email" required>
+            </div>
+            <div class="form-group">
+                <label for="heslo">Heslo</label>
+                <input id="heslo" type="password" minlength="6" placeholder="Heslo (min. 6 znakov)" autocomplete="new-password" required>
+            </div>
+            <div class="form-group">
+                <label for="hesloZnova">Zopakujte heslo</label>
+                <input id="hesloZnova" type="password" minlength="6" placeholder="Heslo ešte raz" autocomplete="new-password" required>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input id="suhlas" type="checkbox" required>
+                    Súhlasím so spracovaním osobných údajov
+                </label>
+            </div>
+            <button type="submit">Zaregistrovať sa</button>
+        </form>
+
+        <div id="vysledok" role="status" aria-live="polite"></div>
+    </main>
+
+    <div class="footer">© 2026 WebLab · Databázy a internet</div>
+</body>
+</html>

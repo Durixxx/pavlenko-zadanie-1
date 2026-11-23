@@ -161,6 +161,9 @@ app.post("/api/pouzivatelia", async (req, res) => {
     if (meno.trim().length > 100 || email.trim().length > 150) {
         return res.status(400).send("Meno alebo e-mail je príliš dlhé.");
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+        return res.status(400).send("Zadajte platný e-mail.");
+    }
     if (heslo.length < 6) {
         return res.status(400).send("Heslo musí mať aspoň 6 znakov.");
     }

@@ -21,6 +21,8 @@ vyhľadávať podľa názvu alebo autora a zoraďovať podľa ľubovoľného st�
 - `pouzivatelia.html` – registrácia používateľov a ich zoznam (s možnosťou vymazania).
 - `prihlasenie.html` – prihlásenie e-mailom a heslom; prihlásený používateľ sa uloží do `sessionStorage`
   a jeho meno sa zobrazí aj na stránke „Správa kníh“.
+- `registracia.html` (bonus) – samostatný registračný formulár: kontrola zhody hesiel, platnosti e-mailu
+  a súhlasu so spracovaním údajov; po úspešnej registrácii presmeruje na prihlásenie.
 - Heslá sa ukladajú do tabuľky `pouzivatelia` iba ako bcrypt hash (knižnica `bcryptjs`, cost factor 10).
 
 Ukážkoví používatelia v exporte databázy (heslo `tajne123`): `jan.novak@example.com`, `eva.kovacova@example.com`.
