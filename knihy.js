@@ -188,24 +188,26 @@ async function vymazKnihu(kniha) {
     }
 }
 
+// Zmena ceny: hodnota z inputu #cena sa pripočíta k aktuálnej cene knihy
+// (na serveri: UPDATE knihy SET cena = cena + ? WHERE id = ?).
 async function zmenitCenu(kniha) {
-    const vstup = window.prompt(`Zadaj novú cenu pre knihu „${kniha.nazov}“`, kniha.cena);
-    if (vstup === null || vstup.trim() === "") return;
-
-    const novaCena = Number(vstup.trim().replace(",", "."));
-    if (!Number.isFinite(novaCena) || novaCena < 0) {
-        window.alert("Cena musí byť nezáporné číslo.");
+    const cena = document.getElementById("cena").value;
+    if (cena.trim() === "" || !Number.isFinite(Number(cena))) {
+        chyba.textContent = "Do poľa „Cena“ zadajte sumu, o ktorú sa má cena zmeniť (napr. 2 alebo -1.5).";
+        document.getElementById("cena").focus();
         return;
     }
 
     chyba.textContent = "";
+    sprava.textContent = "";
     try {
         const odpoved = await fetch(`${API}/api/knihy/${encodeURIComponent(kniha.id)}/cena`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ cena: novaCena })
+            body: JSON.stringify({ cena: Number(cena) })
         });
         if (!odpoved.ok) throw new Error(await textChyby(odpoved));
+        sprava.textContent = `Cena knihy „${kniha.nazov}“ bola zmenená o ${Number(cena).toFixed(2)} €.`;
         await nacitajKnihy();
     } catch (error) {
         chyba.textContent = `Cenu sa nepodarilo zmeniť: ${error.message}`;

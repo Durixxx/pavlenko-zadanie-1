@@ -1,8 +1,21 @@
-require("dotenv").config();
+// Balík dotenv je voliteľný – ak nie je nainštalovaný, server sa spustí
+// s predvolenými hodnotami (localhost, root, bez hesla, kniznica_db).
+try {
+    require("dotenv").config();
+} catch {
+    console.log("Balík dotenv nie je nainštalovaný – používam predvolené nastavenia.");
+}
 
 const express = require("express");
 const mysql = require("mysql2/promise");
-const bcrypt = require("bcryptjs");
+
+// Funguje s balíkom bcryptjs aj bcrypt (oba majú rovnaké funkcie hash a compare).
+let bcrypt;
+try {
+    bcrypt = require("bcryptjs");
+} catch {
+    bcrypt = require("bcrypt");
+}
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -94,18 +107,22 @@ app.delete("/api/knihy/:id", async (req, res) => {
     }
 });
 
+// Zmena ceny: k aktuálnej cene sa pripočíta suma z poľa #cena
+// (záporná suma cenu zníži, ale cena nesmie klesnúť pod 0).
 app.patch("/api/knihy/:id/cena", async (req, res) => {
     const cena = Number(req.body.cena);
-    if (!Number.isFinite(cena) || cena < 0 || cena > 99999999.99) {
-        return res.status(400).send("Cena musí byť nezáporné číslo.");
+    if (!Number.isFinite(cena) || Math.abs(cena) > 99999999.99) {
+        return res.status(400).send("Zadajte platnú sumu.");
     }
 
     try {
         const [result] = await db.execute(
-            "UPDATE knihy SET cena = ? WHERE id = ?",
-            [cena, req.params.id]
+            "UPDATE knihy SET cena = cena + ? WHERE id = ? AND cena + ? >= 0",
+            [cena, req.params.id, cena]
         );
-        if (result.affectedRows === 0) return res.sendStatus(404);
+        if (result.affectedRows === 0) {
+            return res.status(400).send("Kniha neexistuje alebo by cena klesla pod 0.");
+        }
         res.send("Cena bola zmenená.");
     } catch (error) {
         console.error("Chyba pri zmene ceny:", error.message);
@@ -135,19 +152,6 @@ app.put("/api/knihy/:id", async (req, res) => {
 });
 
 /* ---------- Cvičenie 10: používatelia a prihlásenie ---------- */
-
-// 1. Získanie zoznamu používateľov (bez stĺpca heslo_hash!)
-app.get("/api/pouzivatelia", async (req, res) => {
-    try {
-        const [pouzivatelia] = await db.execute(
-            "SELECT id, meno, email FROM pouzivatelia ORDER BY id ASC"
-        );
-        res.json(pouzivatelia);
-    } catch (error) {
-        console.error("Chyba pri načítaní používateľov:", error.message);
-        res.status(500).send("Chyba SQL.");
-    }
-});
 
 // 2. Registrácia nového používateľa s hashovaním hesla
 app.post("/api/pouzivatelia", async (req, res) => {
@@ -242,6 +246,19 @@ app.post("/api/prihlasenie", async (req, res) => {
     } catch (error) {
         console.error("Chyba pri prihlásení:", error.message);
         res.status(500).json({ sprava: "Chyba SQL." });
+    }
+});
+
+// 1. Získanie zoznamu používateľov – vyberáme iba id, meno a email (hash hesla nikdy neposielame).
+app.get("/api/pouzivatelia", async (req, res) => {
+    try {
+        const [pouzivatelia] = await db.execute(
+            "SELECT id, meno, email FROM pouzivatelia ORDER BY id ASC"
+        );
+        res.json(pouzivatelia);
+    } catch (error) {
+        console.error("Chyba pri načítaní používateľov:", error.message);
+        res.status(500).send("Chyba SQL.");
     }
 });
 
